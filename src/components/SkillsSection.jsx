@@ -1,82 +1,39 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
-const skills = [
-  // Programming & Data Analysis
-  { name: "Python", level: 90, category: "analysis" },
-  { name: "NumPy", level: 85, category: "analysis" },
-  { name: "Pandas", level: 85, category: "analysis" },
-  { name: "Excel/Google Sheets", level: 90, category: "analysis" },
-
-  // Databases
-  { name: "MySQL", level: 80, category: "database" },
-  { name: "PostgreSQL", level: 80, category: "database" },
-  { name: "SQL Server", level: 75, category: "database" },
-  { name: "Azure SQL Database", level: 70, category: "database" },
-
-  // Cloud & BI
-  { name: "Azure", level: 70, category: "cloud" },
-  { name: "Power BI", level: 85, category: "visualization" },
-  { name: "Matplotlib", level: 80, category: "visualization" },
-  { name: "Seaborn", level: 80, category: "visualization" },
-
-  // Tools
-  { name: "Git/GitHub", level: 75, category: "tools" },
+const skillGroups = [
+  { num: "01", title: "Programming & Analysis", skills: ["Python", "SQL", "Pandas", "NumPy"] },
+  { num: "02", title: "Visualization", skills: ["Power BI", "Tableau", "Matplotlib", "Seaborn"] },
+  { num: "03", title: "Cloud & Data Platforms", skills: ["Azure SQL", "Azure Data Factory", "AWS S3", "AWS Athena", "AWS Glue"] },
+  { num: "04", title: "Databases & Tools", skills: ["MySQL", "SQL Server", "Excel", "Git"] },
 ];
 
-const categories = ["all", "analysis", "database", "visualization", "cloud", "tools"];
-
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
-        </h2>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
-              )}
-            >
-              {category}
-            </button>
-          ))}
+    <section id="skills" className="py-32 px-6 border-t border-border">
+      <div className="container mx-auto">
+        {/* Section Label */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-sm font-mono text-muted-foreground">04</span>
+          <span className="w-12 h-px bg-border" />
+          <span className="text-sm tracking-widest uppercase text-muted-foreground">Skills</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
+        {/* Grouped Skills Display */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border mt-8">
+          {skillGroups.map((group, idx) => (
+            <div key={group.num} className="bg-background p-8 group hover:bg-muted transition-colors duration-300">
+              <span className="text-xs font-mono text-muted-foreground">{group.num}</span>
+              <h3 className="text-lg font-medium mt-4 mb-2">{group.title}</h3>
+              <ul className="space-y-1">
+                {group.skills.map((skill, i) => (
+                  <li
+                    key={skill}
+                    className="text-sm font-mono uppercase text-muted-foreground tracking-widest opacity-0 animate-fade-in-up"
+                    style={{ animationDelay: `${0.1 + i * 0.07}s` }}
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

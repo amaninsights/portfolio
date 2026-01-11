@@ -1,112 +1,89 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
-    id: 1,
-    title: "Data Science Job Market Analysis",
-    description:
-      "A data analysis project exploring the relationship between skills and salary in the data analyst job market. Answered key questions about in-demand skills, salary trends, and optimal skills for data analysts using real-world datasets.",
-    image: "/projects/Project1.png",
-    tags: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter Notebook", "Data Analysis"],
-    demoUrl: "https://github.com/Sarohaa199/data-science-job-market",
-    githubUrl: "https://github.com/Sarohaa199/data-science-job-market",
-  },
-  {
-    id: 2,
     title: "Vendor Performance Analysis",
-    description:
-      "End-to-end analytics project for evaluating vendor performance in retail. Includes data processing, KPI analysis, and interactive Power BI dashboards to support data-driven vendor management.",
-    image: "/projects/Project2.png",
-    tags: ["Python", "Sqlite3", "Power BI","Data Cleaning", "EDA", "CTE", "Window Functions", "Business Insights"],
-    demoUrl: "https://github.com/Sarohaa199/Vendor-Performance-Analysis",
-    githubUrl: "https://github.com/Sarohaa199/Vendor-Performance-Analysis",
+    description: "Power BI dashboards for data-driven vendor management",
+    tech: "Python / SQLite / Power BI",
+    url: "https://github.com/amaninsights/Vendor-Performance-Analysis",
   },
   {
-    id: 3,
-    title: "MySQL Data Cleaning and Exploratory Data Analysis (EDA)",
-    description:
-      "End-to-end data cleaning, transformation, and exploratory data analysis on raw sales data using MySQL. Demonstrates real-world data cleaning, advanced SQL querying, and business insights generation.",
-    image: "/projects/Project3.png",
-    tags: ["MySQL", "SQL", "Data Cleaning", "EDA", "CTE", "Window Functions", "Business Insights"],
-    demoUrl: "https://github.com/Sarohaa199/MySQL-Projects/tree/main/mysql-data-analysis",
-    githubUrl: "https://github.com/Sarohaa199/MySQL-Projects/tree/main/mysql-data-analysis",
-  }
+    title: "Data Science Job Market",
+    description: "Skills vs salary trends with advanced visualizations",
+    tech: "Python / Pandas / Matplotlib",
+    url: "https://github.com/amaninsights/data-science-job-market",
+  },
+  {
+    title: "Hotel Booking Analytics",
+    description: "End-to-end booking pattern analysis",
+    tech: "Python / Power BI",
+    url: "https://github.com/amaninsights/Hotel-Booking-Analysis",
+  },
+  {
+    title: "Airbnb Market Insights",
+    description: "Seattle pricing trends and market intelligence",
+    tech: "Tableau / Data Viz",
+    url: "https://github.com/amaninsights/airbnb-market-insights-seattle",
+  },
 ];
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          {" "}
-          Featured <span className="text-primary"> Projects </span>
-        </h2>
+    <section id="work" className="py-32 px-6 border-t border-border">
+      <div className="container mx-auto">
+        {/* Section Label */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-sm font-mono text-muted-foreground">02</span>
+          <span className="w-12 h-px bg-border" />
+          <span className="text-sm tracking-widest uppercase text-muted-foreground">Selected Work</span>
+        </div>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+        {/* Projects List */}
+        <div className="space-y-0">
+          {projects.map((project, index) => (
+            <a
+              key={project.title}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block py-12 border-b border-border hover:bg-muted/50 transition-colors duration-300 -mx-6 px-6"
             >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                    >
-                      {tag}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-start gap-4 mb-3">
+                    <span className="text-sm font-mono text-muted-foreground pt-1">
+                      0{index + 1}
                     </span>
-                  ))}
-                </div>
-
-                <h3 className="text-xl font-semibold mb-1"> {project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
+                    <h3 className="text-2xl md:text-3xl font-medium group-hover:translate-x-2 transition-transform duration-300">
+                      {project.title}
+                    </h3>
                   </div>
+                  <p className="text-muted-foreground ml-10 lg:ml-10 max-w-xl">
+                    {project.description}
+                  </p>
+                </div>
+                
+                <div className="flex items-center gap-8 ml-10 lg:ml-0">
+                  <span className="text-sm font-mono text-muted-foreground hidden sm:block">
+                    {project.tech}
+                  </span>
+                  <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {/* View All Link */}
+        <div className="mt-16">
           <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            href="https://github.com/amaninsights"
             target="_blank"
-            href="https://github.com/Sarohaa199"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 text-lg font-medium hover:gap-5 transition-all duration-300"
           >
-            Check My Github <ArrowRight size={16} />
+            <span className="w-12 h-px bg-foreground group-hover:w-20 transition-all duration-300" />
+            View all on GitHub
           </a>
         </div>
       </div>

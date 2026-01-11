@@ -1,14 +1,4 @@
-import {
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Twitch,
-  Twitter,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -21,162 +11,134 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const form = e.target;
-
     emailjs
-      .sendForm(
-        "service_wlu6ogg",   // your EmailJS Service ID
-    "template_xvmhc7n",  // your EmailJS Template ID
-    form,
-    "vAtJPSDdI3Zv3R4K9"  // your EmailJS Public Key
-      )
+      .sendForm("service_wlu6ogg", "template_xvmhc7n", e.target, "vAtJPSDdI3Zv3R4K9")
       .then(() => {
         toast({
           title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
+          description: "Thank you. I'll get back to you soon.",
         });
-        form.reset();
+        e.target.reset();
       })
-      .catch((error) => {
+      .catch(() => {
         toast({
-          title: "Failed to send message",
-          description: "Please try again later.",
+          title: "Failed to send",
+          description: "Please try again or email me directly.",
           variant: "destructive",
         });
-        console.error("EmailJS error:", error);
       })
       .finally(() => setIsSubmitting(false));
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
+    <section id="contact" className="py-32 px-6 border-t border-border">
+      <div className="container mx-auto">
+        {/* Section Label */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-sm font-mono text-muted-foreground">05</span>
+          <span className="w-12 h-px bg-border" />
+          <span className="text-sm tracking-widest uppercase text-muted-foreground">Contact</span>
+        </div>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </p>
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Left - Message */}
+          <div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-8">
+              Let's work together
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+              Have a project in mind or looking for a data analyst? 
+              I'd love to hear from you.
+            </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6"> Contact Information </h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium"> Email</h4>
-                  <a
-                    href="mailto:sarohaa199@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    sarohaa199@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium"> Phone</h4>
-                  <a
-                    href="tel:+919306720901"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +91 9306720901
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium"> Location</h4>
-                  <span className="text-muted-foreground hover:text-primary transition-colors">
-                    Haryana, India
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="https://www.linkedin.com/in/aman2805" target="_blank" rel="noreferrer">
-  <Linkedin />
-</a>
-<a href="https://twitter.com/sarohaa199" target="_blank" rel="noreferrer">
-  <Twitter />
-</a>
-<a href="https://www.instagram.com/amansaroha98" target="_blank" rel="noreferrer">
-  <Instagram />
-</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-card p-8 rounded-lg shadow-xs">
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
-
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="from_name"       // Changed here
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="Your Name..."
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="from_email"      // Changed here
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"         // stays same
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn("cosmic-button w-full flex items-center justify-center gap-2")}
+            {/* Links */}
+            <div className="space-y-4">
+              <a 
+                href="mailto:amansarohadev@gmail.com"
+                className="group flex items-center justify-between py-4 border-b border-border hover:border-foreground transition-colors"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
+                <span className="text-lg">amansarohadev@gmail.com</span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </a>
+              <a 
+                href="https://linkedin.com/in/aman2805"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between py-4 border-b border-border hover:border-foreground transition-colors"
+              >
+                <span className="text-lg">LinkedIn</span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </a>
+              <a 
+                href="https://github.com/amaninsights"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between py-4 border-b border-border hover:border-foreground transition-colors"
+              >
+                <span className="text-lg">GitHub</span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </a>
+              <a 
+                href="https://x.com/AmanAnalytics"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between py-4 border-b border-border hover:border-foreground transition-colors"
+              >
+                <span className="text-lg">Twitter / X</span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </a>
+            </div>
           </div>
+
+          {/* Right - Form */}
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div>
+              <label htmlFor="name" className="block text-sm font-mono text-muted-foreground mb-3">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="from_name"
+                required
+                className="w-full bg-transparent border-b border-border py-3 text-lg focus:outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/50"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-mono text-muted-foreground mb-3">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="from_email"
+                required
+                className="w-full bg-transparent border-b border-border py-3 text-lg focus:outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/50"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-mono text-muted-foreground mb-3">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                className="w-full bg-transparent border-b border-border py-3 text-lg focus:outline-none focus:border-foreground transition-colors resize-none placeholder:text-muted-foreground/50"
+                placeholder="Tell me about your project..."
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-4 bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50"
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
+          </form>
         </div>
       </div>
     </section>

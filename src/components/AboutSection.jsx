@@ -1,86 +1,64 @@
-import { Briefcase, Code, User } from "lucide-react";
-
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
-      {" "}
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary"> Me</span>
-        </h2>
+    <section id="about" className="py-32 px-6 border-t border-border">
+      <div className="container mx-auto">
+        {/* Section Label */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-sm font-mono text-muted-foreground">01</span>
+          <span className="w-12 h-px bg-border" />
+          <span className="text-sm tracking-widest uppercase text-muted-foreground">About</span>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              Passionate Data Analyst
-            </h3>
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Left - Big Statement */}
+          <div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-8">
+              I help businesses make sense of their data and turn it into action.
+            </h2>
+          </div>
 
-            <p className="text-muted-foreground">
-              With 1+ years of experience in data analysis, I specialize in extracting insights from data, building reports, and creating impactful visualizations to support business decisions.<br/>
-              <span className="block mt-2">Key tools: <b>Python, Excel/Google Sheets, MySQL, PostgreSQL, SQL Server, Azure, Azure SQL Database, Power BI, NumPy, Pandas, Matplotlib, Seaborn, Git/GitHub</b>.</span>
+          {/* Right - Details */}
+          <div className="space-y-8">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Based in India, I specialize in building data pipelines, creating dashboards, 
+              and finding the stories hidden in numbers. At HCL Technologies, I supported 
+              enterprise Azure SQL databases and learned what it takes to keep critical 
+              systems running.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Now I focus on end-to-end analytics — from cleaning raw data with Python 
+              to delivering insights through Power BI and Tableau that teams actually use.
             </p>
 
-            <p className="text-muted-foreground">
-              I'm passionate about solving complex business problems with data, and I am always learning new tools and techniques to stay at the forefront of the data analytics field.<br/>
-              </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
-                Get In Touch
-              </a>
-
-              <a
-                href="/Resume.pdf"
-                download="Resume.pdf"
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Data Analysis</h4>
-                  <p className="text-muted-foreground">
-                    Extracting, cleaning, and analyzing data to uncover actionable insights and support business decisions.
-                  </p>
-                </div>
+            {/* Quick Facts */}
+            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border">
+              <div>
+                <div className="text-4xl font-bold mb-1">1+</div>
+                <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Data Visualization</h4>
-                  <p className="text-muted-foreground">
-                    Creating clear and interactive dashboards, charts, and reports to communicate data findings effectively.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Data Reporting</h4>
-                  <p className="text-muted-foreground">
-                    Building automated and ad-hoc reports to help stakeholders make data-driven decisions.
-                  </p>
-                </div>
+              <div>
+                <div className="text-4xl font-bold mb-1">6+</div>
+                <div className="text-sm text-muted-foreground">Projects Completed</div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Services Row */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border mt-24">
+          {[
+            { num: "01", title: "Data Analysis", desc: "Python, SQL, Pandas" },
+            { num: "02", title: "Visualization", desc: "Power BI, Tableau" },
+            { num: "03", title: "Cloud Platforms", desc: "Azure, AWS" },
+            { num: "04", title: "Databases", desc: "SQL Server, MySQL" },
+          ].map((item) => (
+            <div key={item.num} className="bg-background p-8 group hover:bg-muted transition-colors duration-300">
+              <span className="text-xs font-mono text-muted-foreground">{item.num}</span>
+              <h3 className="text-lg font-medium mt-4 mb-2">{item.title}</h3>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
