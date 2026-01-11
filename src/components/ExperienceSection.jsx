@@ -61,10 +61,24 @@ export const ExperienceSection = () => {
                 <p>
                   Performed exploratory data analysis and statistical analysis to identify pricing inefficiencies, demand patterns, and inventory risks. Delivered insight-driven recommendations projected to generate ~15% cost optimization, directly supporting business planning and operational efficiency.
                 </p>
-                <div className="mt-8">
-                  <span className="font-semibold">Key Skills:</span><br />
-                  Azure (AZ-900, AZ-104) &middot; ETL & Data Pipelines &middot; Power BI &middot; Tableau &middot; Data Modeling (Star Schema) &middot; EDA & Statistical Analysis
-                </div>
+               <div className="flex flex-wrap gap-3 mt-8 pt-8 border-t border-border">
+  {[
+    "AZ-900", "AZ-104",
+    "ETL & Data Pipelines",
+    "Power BI",
+    "Data Modeling",
+    "EDA",
+    "Statistical Analysis",
+  ].map((skill) => (
+    <span
+      key={skill}
+      className="text-sm text-muted-foreground"
+    >
+      {skill}
+    </span>
+  ))}
+</div>
+                
               </div>
             </div>
           </div>
